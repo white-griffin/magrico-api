@@ -1,0 +1,63 @@
+<?php
+
+namespace App\Http\Resources;
+
+use App\Constants\Constant;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class ProductResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        return [
+            'id' => $this->id,
+            'category' => $this->categoryData($this->category),
+            'title' => $this->title,
+            'description' => $this->description,
+            'slug' => $this->slug,
+            'price' => $this->price,
+            'discount_percent' => $this->discount_percent,
+            'quantity' => $this->quantity,
+            'image' => $this->apiPresent()->image,
+            'discount_status' => $this->discount_status,
+            'attributes' => ProductAttributesResource::collection($this->attributes) ,
+            'gallery' => $this->filesResource($this->files),
+            'comments' => CommentResource::collection($this->comments->where('status',Constant::PUBLISHED)),
+            'meta_title' => $this->meta_title,
+            'meta_description' => $this->meta_description
+        ];
+    }
+
+    private function filesResource($allFiles)
+    {
+
+        $files =[];
+        foreach ($allFiles as $file){
+            $files[] = [
+                'id' => $file->id,
+                'file_name' => asset(Constant::PRODUCT_GALLERY_PATH.$file->name),
+                'type' => $file->type,
+                'link' => $file->link
+            ];
+        }
+        return $files;
+    }
+
+    private function categoryData($category)
+    {
+        return [
+            'id' => $category->id,
+            'parent_id' => $category->parent_id,
+            'title' => $category->title,
+            'image' => $category->apiPresent()->image,
+            'meta_title' => $category->meta_title,
+            'meta_description' => $category->meta_description
+        ];
+    }
+}
