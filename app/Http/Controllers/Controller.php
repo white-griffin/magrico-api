@@ -54,9 +54,7 @@ abstract class Controller
                 'Token'         => env('AMOOT_OTP_SERVICE_TOKEN'),
                 'Mobile'        => $receptorNumber,
                 'PatternCodeID' => $patternCode,
-                'PatternValues' => json_encode([
-                    'name' => $receptorName // حتماً این کلید باید با پترن تعریف‌شده در پنل AmootSMS مطابقت داشته باشه
-                ]),
+                'PatternValues' => $receptorName
             ]);
 
             $data = $response->json();
