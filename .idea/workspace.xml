@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30a6b576-a0a2-48f9-b014-7cdac6d079e1" name="Changes" comment="" />
+    <list default="true" id="30a6b576-a0a2-48f9-b014-7cdac6d079e1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -167,7 +169,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/xampp/htdocs/magrico-api",
+    "last_opened_file_path": "C:/xampp/htdocs/magrico-api/public",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -179,11 +181,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\magrico-api\public" />
       <recent name="C:\xampp\htdocs\api-shop\app\Filters" />
       <recent name="C:\xampp\htdocs\api-shop\resources\views\admin" />
       <recent name="C:\xampp\htdocs\api-shop\public\admin-assets\media\logos" />
       <recent name="C:\xampp\htdocs\api-shop\app\Presenters\Web" />
-      <recent name="C:\xampp\htdocs\api-shop\public\frontend-assets" />
     </key>
   </component>
   <component name="RunManager">
@@ -264,7 +266,7 @@
       <workItem from="1748933586308" duration="1199000" />
       <workItem from="1749370308285" duration="335000" />
       <workItem from="1749372148746" duration="4965000" />
-      <workItem from="1749387773535" duration="3029000" />
+      <workItem from="1749387773535" duration="4713000" />
     </task>
     <servers />
   </component>

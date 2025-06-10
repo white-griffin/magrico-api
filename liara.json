@@ -1,5 +1,9 @@
 {
     "laravel":{
         "phpVersion": "8.2"
+    },
+    "disks":{
+        "name": "api-uploads",
+        "mountTo" : "public/uploads"
     }
 }
