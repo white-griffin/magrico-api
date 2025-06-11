@@ -30,9 +30,30 @@
                     'insertTable', 'tableColumn', 'tableRow', 'mergeTableCells', '|',
                     'specialCharacters', 'viewSource'
                 ]
+            },
+            link: {
+                decorators: {
+                    openInNewTab: {
+                        mode: 'manual',
+                        label: 'باز کردن در تب جدید',
+                        defaultValue: true,
+                        attributes: {
+                            target: '_blank',
+                            rel: 'noopener noreferrer'
+                        }
+                    },
+                    nofollow: {
+                        mode: 'manual',
+                        label: 'Nofollow',
+                        attributes: {
+                            rel: 'nofollow'
+                        }
+                    }
+                }
             }
         })
         .catch(error => {
             console.error(error);
         });
+
 </script>
