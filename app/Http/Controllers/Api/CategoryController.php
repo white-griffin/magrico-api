@@ -65,6 +65,7 @@ class CategoryController extends Controller
             'description' => $category->description,
             'slug' => $category->slug,
             'image' => $category->apiPresent()->image,
+            'image_alt' => $category->image_alt,
             'products' => $this->getProducts($category),
             'sub_categories' => CategoriesResource::collection(
                 $category->subCategories

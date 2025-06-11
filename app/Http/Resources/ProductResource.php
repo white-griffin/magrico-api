@@ -25,6 +25,7 @@ class ProductResource extends JsonResource
             'discount_percent' => $this->discount_percent,
             'quantity' => $this->quantity,
             'image' => $this->apiPresent()->image,
+            'image_alt' => $this->image_alt,
             'discount_status' => $this->discount_status,
             'attributes' => ProductAttributesResource::collection($this->attributes) ,
             'gallery' => $this->filesResource($this->files),
@@ -44,7 +45,8 @@ class ProductResource extends JsonResource
                 'id' => $file->id,
                 'file_name' => asset(Constant::PRODUCT_GALLERY_PATH.$file->name),
                 'type' => $file->type,
-                'link' => $file->link
+                'link' => $file->link,
+                'alt' => $file->alt
             ];
         }
         return $files;
@@ -57,6 +59,7 @@ class ProductResource extends JsonResource
             'parent_id' => $category->parent_id,
             'title' => $category->title,
             'image' => $category->apiPresent()->image,
+            'image_alt' => $category->image_alt,
             'meta_title' => $category->meta_title,
             'meta_description' => $category->meta_description,
             'canonical_url' => $category->canonical_url,

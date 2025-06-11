@@ -27,6 +27,7 @@ return new class extends Migration
                 Constant::DRAFT
             ])->default(Constant::PUBLISHED);
             $table->string('main_image')->nullable();
+            $table->string('image_alt')->nullable();
             $table->timestamps();
         });
     }

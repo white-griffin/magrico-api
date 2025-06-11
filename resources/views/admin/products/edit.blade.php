@@ -276,8 +276,17 @@
                             <!--begin::Select2-->
                             @include('admin.__components.image-input', [
                             'name' => 'image',
-                            'imageUrl' => $product->webPresent()->image])
+                            'imageUrl' => $product->webPresent()->image
+                            ])
+                            <div class=" mb-10 fv-row fv-plugins-icon-container mt-5">
+                                <!--begin::Label-->
+                                <label class=" form-label">آلت تصویر</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                @include('admin.__components.input-text', [ 'name' => 'image_alt','value' => $product->image_alt])
+                                <!--end::Input-->
 
+                            </div>
                             <!--end::Datepicker-->
                         </div>
                         <!--end::Card body-->

@@ -24,6 +24,7 @@ class CategoriesResource extends JsonResource
 			'description' => $this->description,
             'slug' => $this->slug,
             'image' => $this->apiPresent()->image,
+            'image_alt' => $this->image_alt,
             'sub_categories' => CategoriesResource::collection(
                 $this->subCategories
             ),

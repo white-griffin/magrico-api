@@ -28,6 +28,7 @@
                                 @csrf
                                 <input name="duration" id="duration" class="d-none">
                                 <input name="link" id="link" class="d-none">
+                                <input name="alt" id="alt" class="d-none">
 
                                 <div class="dropzone dz-clickable" id="kt_ecommerce_add_product_media">
                                     <!--begin::Message-->
@@ -100,6 +101,9 @@
                                             style="width: 162.9px;" aria-label="Actions">نوع محتوا
                                         </th>
                                         <th class="min-w-125px sorting" rowspan="1" colspan="1"
+                                            style="width: 162.9px;" aria-label="Actions">alt
+                                        </th>
+                                        <th class="min-w-125px sorting" rowspan="1" colspan="1"
                                             style="width: 162.9px;" aria-label="Actions">عملیات
                                         </th>
                                     </tr>
@@ -137,7 +141,7 @@
                                                     </div>
                                                 </td>
                                                 <td> {!! $file->webPresent()->getType !!}</td>
-
+                                                <td> {!! $file->alt !!}</td>
                                                 <td class="">
 
                                                     @include('admin.__modules.delete-link',[
@@ -158,12 +162,7 @@
                                     <!--end::Table body-->
                                 </table>
                             </div>
-                            <div class="row">
-                                <div
-                                    class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
 
-                                </div>
-                            </div>
                         </div>
                         <!--end::Table-->
 
@@ -192,28 +191,46 @@
             init: function() {
 
                 this.on("addedfile", function(file) {
-                    Object.assign(file,{
-                        preview: URL.createObjectURL(file)
+                    Swal.fire({
+                        title: "alt را وارد کنید",
+                        html: `
+    <input id="swal_alt" style="max-width: 90%" class="swal2-input" placeholder="alt">
+  `,
+                        focusConfirm: false,
+                        showCancelButton: true,
+                        confirmButtonText: 'تایید',
+                        showLoaderOnConfirm: true,
+                        preConfirm: () => {
+                            document.getElementById('alt').value = document.getElementById('swal_alt').value;
+
+                        },
+                        allowOutsideClick: () => !Swal.isLoading()
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Object.assign(file,{
+                                preview: URL.createObjectURL(file)
+                            })
+                            if(file.type.split('/')[0] === 'video'){
+
+                                const video = document.createElement("video");
+                                video.src = file.preview;
+
+                                video.addEventListener("loadedmetadata", () => {
+                                    let duration = document.getElementById('duration');
+                                    duration.value = parseInt(video.duration)
+                                    myDropzone.processQueue() ;
+                                });
+
+
+                            }else {
+
+                                setTimeout(() => {
+                                    myDropzone.processQueue() ;
+                                }, 10);
+
+                            }
+                        }
                     })
-                    if(file.type.split('/')[0] === 'video'){
-
-                        const video = document.createElement("video");
-                        video.src = file.preview;
-
-                        video.addEventListener("loadedmetadata", () => {
-                            let duration = document.getElementById('duration');
-                            duration.value = parseInt(video.duration)
-                            myDropzone.processQueue() ;
-                        });
-
-
-                    }else {
-
-                        setTimeout(() => {
-                            myDropzone.processQueue() ;
-                        }, 10);
-
-                    }
 
 
                 });

@@ -179,6 +179,15 @@
                               'name' => 'main_image',
                               ])
 
+                            <div class=" mb-10 fv-row fv-plugins-icon-container mt-5">
+                                <!--begin::Label-->
+                                <label class=" form-label">آلت تصویر</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                @include('admin.__components.input-text', [ 'name' => 'image_alt'])
+                                <!--end::Input-->
+
+                            </div>
                             <!--end::Image input-->
                         </div>
                         <!--end::Card body-->

@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('slug')->unique()->nullable();
             $table->integer('quantity')->default(5);
             $table->string('image')->nullable();
+            $table->string('image_alt')->nullable();
             $table->string('canonical_url', 2048)->nullable();
             $table->enum('status' , [
                 Constant::ACTIVE,

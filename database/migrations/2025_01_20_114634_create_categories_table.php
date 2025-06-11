@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('parent_id')->nullable()->constrained('categories')->cascadeOnDelete();
             $table->string('title');
             $table->string('image')->nullable();
+            $table->string('image_alt')->nullable();
             $table->text('description')->nullable();
             $table->text('meta_title')->nullable();
             $table->text('meta_description')->nullable();

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('size')->nullable();
             $table->string('length')->nullable();
             $table->text('link')->nullable();
+            $table->string('alt')->nullable();
             $table->string('status')->default(Constant::ACTIVE);
             $table->timestamps();
         });

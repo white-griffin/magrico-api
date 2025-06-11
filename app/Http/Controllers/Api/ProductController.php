@@ -85,7 +85,8 @@ class ProductController extends Controller
                 'id' => $file->id,
                 'file_name' => asset(Constant::PRODUCT_GALLERY_PATH.$file->name),
                 'type' => $file->type,
-                'link' => $file->link
+                'link' => $file->link,
+                'alt' => $file->alt
             ];
         }
         return $files;
@@ -126,6 +127,7 @@ class ProductController extends Controller
             'discount_percent' => $product->discount_percent,
             'quantity' => $product->quantity,
             'image' => $product->apiPresent()->image,
+            'image_alt' => $product->image_alt,
             'discount_status' => $product->discount_status,
             'attributes' => ProductAttributesResource::collection($product->attributes) ,
             'gallery' => $this->filesResource($product->files),

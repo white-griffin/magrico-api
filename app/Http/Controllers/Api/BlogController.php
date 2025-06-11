@@ -83,6 +83,7 @@ class BlogController extends Controller
             'title' => $blog->title,
             'content' => $blog->content,
             'image' => $blog->webPresent()->image,
+            'image_alt' => $blog->image_alt,
             'slug' => $blog->slug,
             'comments' => CommentResource::collection($blog->comments->where('status',Constant::PUBLISHED)),
             'meta_title' => $blog->meta_title,

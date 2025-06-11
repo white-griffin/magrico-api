@@ -23,6 +23,7 @@ class BlogResource extends JsonResource
             'title' => $this->title,
             'content' => $this->content,
             'image' => $this->apiPresent()->image,
+            'image_alt' => $this->image_alt,
             'slug' => $this->slug,
             'comments' => CommentResource::collection($this->comments->where('status',Constant::PUBLISHED)),
             'meta_title' => $this->meta_title,

@@ -118,7 +118,8 @@ class CategoryController extends Controller
             'type' => request('type'),
             'meta_title' => request('meta_title'),
             'meta_description' => request('meta_description'),
-            'canonical_url' => request('canonical_url')
+            'canonical_url' => request('canonical_url'),
+            'image_alt' => request('image_alt'),
         ];
 
         if (request()->hasFile('image')) {

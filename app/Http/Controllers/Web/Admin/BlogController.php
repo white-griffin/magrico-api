@@ -93,7 +93,8 @@ class BlogController extends Controller
             'slug' => request('slug'),
             'meta_title' => request('meta_title'),
             'meta_description' => request('meta_description'),
-            'canonical_url' => request('canonical_url')
+            'canonical_url' => request('canonical_url'),
+            'image_alt' => request('image_alt'),
 
         ];
 
