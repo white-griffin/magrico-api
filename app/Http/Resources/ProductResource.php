@@ -30,7 +30,8 @@ class ProductResource extends JsonResource
             'gallery' => $this->filesResource($this->files),
             'comments' => CommentResource::collection($this->comments->where('status',Constant::PUBLISHED)),
             'meta_title' => $this->meta_title,
-            'meta_description' => $this->meta_description
+            'meta_description' => $this->meta_description,
+            'canonical_url' => $this->canonical_url,
         ];
     }
 
@@ -57,7 +58,8 @@ class ProductResource extends JsonResource
             'title' => $category->title,
             'image' => $category->apiPresent()->image,
             'meta_title' => $category->meta_title,
-            'meta_description' => $category->meta_description
+            'meta_description' => $category->meta_description,
+            'canonical_url' => $category->canonical_url,
         ];
     }
 }

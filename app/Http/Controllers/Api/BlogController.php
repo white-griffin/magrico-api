@@ -41,40 +41,14 @@ class BlogController extends Controller
     {
         $blog = Blog::findOrFail(\request('blog_id'));
 
-        return ApiResponse::Success('',[
-            'id' => $blog->id,
-            'author' => $blog->author->apiPresent()->fullName,
-            'category_id' => $blog->category_id,
-            'title' => $blog->title,
-            'content' => $blog->content,
-            'image' => $blog->webPresent()->image,
-            'slug' => $blog->slug,
-            'comments' => CommentResource::collection($blog->comments->where('status',Constant::PUBLISHED)),
-            'meta_title' => $blog->meta_title,
-            'meta_description' => $blog->meta_description,
-			'create_date' => Date::toJalaliFormat($blog->created_at),
-            'update_date' => Date::toJalaliFormat($blog->updated_at),
-        ]);
+        return ApiResponse::Success('',$this->singleBlogResource($blog));
     }
 
     public function detail($slug)
     {
         $blog = Blog::where('slug',$slug)->first();
 
-        return ApiResponse::Success('',[
-            'id' => $blog->id,
-            'author' => $blog->author->apiPresent()->fullName,
-            'category_id' => $blog->category_id,
-            'title' => $blog->title,
-            'content' => $blog->content,
-            'image' => $blog->webPresent()->image,
-            'slug' => $blog->slug,
-            'comments' => CommentResource::collection($blog->comments->where('status',Constant::PUBLISHED)),
-            'meta_title' => $blog->meta_title,
-            'meta_description' => $blog->meta_description,
-			'create_date' => Date::toJalaliFormat($blog->created_at),
-            'update_date' => Date::toJalaliFormat($blog->updated_at),
-        ]);
+        return ApiResponse::Success('',$this->singleBlogResource($blog));
     }
 
     public function addComment()
@@ -98,5 +72,24 @@ class BlogController extends Controller
             return ApiResponse::Fail(ResponseAlias::HTTP_INTERNAL_SERVER_ERROR,'خطا در عملیات');
         }
 
+    }
+
+    private function singleBlogResource($blog)
+    {
+        return [
+            'id' => $blog->id,
+            'author' => $blog->author->apiPresent()->fullName,
+            'category_id' => $blog->category_id,
+            'title' => $blog->title,
+            'content' => $blog->content,
+            'image' => $blog->webPresent()->image,
+            'slug' => $blog->slug,
+            'comments' => CommentResource::collection($blog->comments->where('status',Constant::PUBLISHED)),
+            'meta_title' => $blog->meta_title,
+            'meta_description' => $blog->meta_description,
+            'create_date' => Date::toJalaliFormat($blog->created_at),
+            'update_date' => Date::toJalaliFormat($blog->updated_at),
+            'canonical_url' => $blog->canonical_url,
+        ];
     }
 }

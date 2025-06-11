@@ -40,31 +40,29 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail(request('category_id'));
 
-        return ApiResponse::Success('',[
-            'id' => $category->id,
-            'parent_id' => $category->parent_id,
-            'title' => $category->title,
-			'description' => $category->description,
-            'slug' => $category->slug,
-            'image' => $category->apiPresent()->image,
-            'products' => $this->getProducts($category),
-            'sub_categories' => CategoriesResource::collection(
-                $category->subCategories
-            ),
-            'meta_title' => $category->meta_title,
-            'meta_description' => $category->meta_description
-        ]);
+        return ApiResponse::Success('',$this->singleCategoryResource($category));
     }
 
     public function detail($slug)
     {
         $category = Category::where('slug',$slug)->first();
 
-        return ApiResponse::Success('',[
+        return ApiResponse::Success('',$this->singleCategoryResource($category));
+    }
+
+    private function getProducts($category)
+    {
+        $allCategoryIds = $category->allCategoryIds();
+        return ProductResource::collection(Product::whereIn('category_id', $allCategoryIds)->where('status',Constant::ACTIVE)->get());
+    }
+
+    private function singleCategoryResource($category)
+    {
+        return [
             'id' => $category->id,
             'parent_id' => $category->parent_id,
             'title' => $category->title,
-			'description' => $category->description,
+            'description' => $category->description,
             'slug' => $category->slug,
             'image' => $category->apiPresent()->image,
             'products' => $this->getProducts($category),
@@ -72,13 +70,8 @@ class CategoryController extends Controller
                 $category->subCategories
             ),
             'meta_title' => $category->meta_title,
-            'meta_description' => $category->meta_description
-        ]);
-    }
-
-    private function getProducts($category)
-    {
-        $allCategoryIds = $category->allCategoryIds();
-        return ProductResource::collection(Product::whereIn('category_id', $allCategoryIds)->where('status',Constant::ACTIVE)->get());
+            'meta_description' => $category->meta_description,
+            'canonical_url' => $category->canonical_url,
+        ];
     }
 }

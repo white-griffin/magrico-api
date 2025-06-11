@@ -66,46 +66,14 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail(\request('product_id'));
 
-        return ApiResponse::Success('',[
-            'id' => $product->id,
-            'category_id' => $product->category_id,
-            'title' => $product->title,
-            'description' => $product->description,
-            'slug' => $product->slug,
-            'price' => $product->price,
-            'discount_percent' => $product->discount_percent,
-            'quantity' => $product->quantity,
-            'image' => $product->apiPresent()->image,
-            'discount_status' => $product->discount_status,
-            'attributes' => ProductAttributesResource::collection($product->attributes) ,
-            'gallery' => $this->filesResource($product->files),
-            'comments' => CommentResource::collection($product->comments->where('status',Constant::PUBLISHED)),
-            'meta_title' => $product->meta_title,
-            'meta_description' => $product->meta_description
-        ]);
+        return ApiResponse::Success('',$this->singleProductResource($product));
     }
 
     public function detail($slug)
     {
         $product = Product::where('slug',$slug)->first();
 
-        return ApiResponse::Success('',[
-            'id' => $product->id,
-            'category_id' => $product->category_id,
-            'title' => $product->title,
-            'description' => $product->description,
-            'slug' => $product->slug,
-            'price' => $product->price,
-            'discount_percent' => $product->discount_percent,
-            'quantity' => $product->quantity,
-            'image' => $product->apiPresent()->image,
-            'discount_status' => $product->discount_status,
-            'attributes' => ProductAttributesResource::collection($product->attributes) ,
-            'gallery' => $this->filesResource($product->files),
-            'comments' => CommentResource::collection($product->comments->where('status',Constant::PUBLISHED)),
-            'meta_title' => $product->meta_title,
-            'meta_description' => $product->meta_description
-        ]);
+        return ApiResponse::Success('',$this->singleProductResource($product));
     }
 
     private function filesResource($allFiles)
@@ -146,4 +114,25 @@ class ProductController extends Controller
 
     }
 
+    private function singleProductResource($product)
+    {
+        return [
+            'id' => $product->id,
+            'category_id' => $product->category_id,
+            'title' => $product->title,
+            'description' => $product->description,
+            'slug' => $product->slug,
+            'price' => $product->price,
+            'discount_percent' => $product->discount_percent,
+            'quantity' => $product->quantity,
+            'image' => $product->apiPresent()->image,
+            'discount_status' => $product->discount_status,
+            'attributes' => ProductAttributesResource::collection($product->attributes) ,
+            'gallery' => $this->filesResource($product->files),
+            'comments' => CommentResource::collection($product->comments->where('status',Constant::PUBLISHED)),
+            'meta_title' => $product->meta_title,
+            'meta_description' => $product->meta_description,
+            'canonical_url' => $product->canonical_url,
+        ];
+    }
 }

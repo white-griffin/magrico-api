@@ -70,6 +70,16 @@
                                 <div class="col-md-12">
                                     <div class="mb-10 fv-row fv-plugins-icon-container">
                                         <!--begin::Label-->
+                                        <label class=" form-label">لینک کنونیکال  </label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        @include('admin.__components.input-text', [ 'name' => 'canonical_url'])
+                                        <!--end::Input-->
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-10 fv-row fv-plugins-icon-container">
+                                        <!--begin::Label-->
                                         <label class=" form-label">توضیحات</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
@@ -131,12 +141,7 @@
                               'name' => 'status',
                               'items' => $statuses
                             ])
-                            <div class="d-none mt-10">
-                                <label for="kt_ecommerce_add_category_status_datepicker" class="form-label">Select
-                                    publishing date and time</label>
-                                <input class="form-control flatpickr-input" id="kt_ecommerce_add_category_status_datepicker"
-                                       placeholder="Pick date &amp; time" type="text" readonly="readonly">
-                            </div>
+
                             <!--end::Datepicker-->
                         </div>
                         <!--end::Card body-->

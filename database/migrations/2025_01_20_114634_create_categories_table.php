@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('meta_title')->nullable();
             $table->text('meta_description')->nullable();
             $table->string('slug')->unique()->nullable();
+            $table->string('canonical_url', 2048)->nullable();
             $table->enum('status' , [
                 Constant::ACTIVE,
                 Constant::IN_ACTIVE

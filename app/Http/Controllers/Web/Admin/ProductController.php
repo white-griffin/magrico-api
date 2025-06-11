@@ -116,7 +116,8 @@ class ProductController extends Controller
             'special_status' => request('special_status'),
             'product_code' => request('product_code'),
             'meta_title' => request('meta_title'),
-            'meta_description' => request('meta_description')
+            'meta_description' => request('meta_description'),
+            'canonical_url' => request('canonical_url')
         ];
 
         if (request()->hasFile('image')) {

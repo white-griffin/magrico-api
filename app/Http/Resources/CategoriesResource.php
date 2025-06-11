@@ -28,7 +28,8 @@ class CategoriesResource extends JsonResource
                 $this->subCategories
             ),
             'meta_title' => $this->meta_title,
-            'meta_description' => $this->meta_description
+            'meta_description' => $this->meta_description,
+            'canonical_url' => $this->canonical_url,
         ];
     }
 

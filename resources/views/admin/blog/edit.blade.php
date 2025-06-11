@@ -76,6 +76,16 @@
                                 <div class="col-md-12">
                                     <div class="mb-10 fv-row fv-plugins-icon-container">
                                         <!--begin::Label-->
+                                        <label class="required form-label">لینک کنونیکال  </label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        @include('admin.__components.input-text', [ 'name' => 'canonical_url','value' => $blog->canonical_url])
+                                        <!--end::Input-->
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-10 fv-row fv-plugins-icon-container">
+                                        <!--begin::Label-->
                                         <label class=" form-label">توضیحات</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->

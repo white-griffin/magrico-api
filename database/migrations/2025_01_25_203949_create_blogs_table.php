@@ -20,6 +20,8 @@ return new class extends Migration
             $table->longText('content');
             $table->text('meta_title')->nullable();
             $table->text('meta_description')->nullable();
+            $table->string('canonical_url', 2048)->nullable();
+            $table->string('slug')->unique()->nullable();
             $table->enum('status',[
                 Constant::PUBLISHED,
                 Constant::DRAFT

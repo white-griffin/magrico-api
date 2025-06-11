@@ -117,6 +117,16 @@
                                     <!--end::Input-->
 
                                 </div>
+                                <div class="col-md-8 mt-5">
+                                    <div class="mb-10 fv-row fv-plugins-icon-container">
+                                        <!--begin::Label-->
+                                        <label class="required form-label">لینک کنونیکال  </label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        @include('admin.__components.input-text', [ 'name' => 'canonical_url','value' => $product->canonical_url])
+                                        <!--end::Input-->
+                                    </div>
+                                </div>
                                 <div class="col-md-12 my-5">
                                     <div class="mb-10 fv-row fv-plugins-icon-container">
                                         <!--begin::Label-->

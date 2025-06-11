@@ -29,6 +29,7 @@ class BlogResource extends JsonResource
             'meta_description' => $this->meta_description,
 			'create_date' => Date::toJalaliFormat($this->created_at),
             'update_date' => Date::toJalaliFormat($this->updated_at),
+            'canonical_url' => $this->canonical_url,
         ];
     }
 }
