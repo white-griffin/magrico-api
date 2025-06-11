@@ -85,7 +85,7 @@ class BlogController extends Controller
     private function getBlogData()
     {
         $data = [
-            'author_id' => Auth::guard('admin')->id(),
+            'author_id' => request('author'),
             'title' => request('title'),
             'status' => request('status'),
             'category_id' => request('category'),
@@ -110,10 +110,12 @@ class BlogController extends Controller
             'category' => ['required'],
             'title' => ['required'],
             'content' => ['required'],
+            'author' => ['required'],
         ], [
             "title.required" => "وارد کردن این فیلد الزامی است ",
             "content.required" => "وارد کردن این فیلد الزامی است ",
             "category.required" => "وارد کردن این فیلد الزامی است ",
+            "author.required" => "وارد کردن این فیلد الزامی است ",
 
         ]);
     }

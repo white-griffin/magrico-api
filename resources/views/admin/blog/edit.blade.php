@@ -73,7 +73,23 @@
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <div class="mb-10 fv-row fv-plugins-icon-container">
+                                        <!--begin::Label-->
+                                        <label class="required form-label">نویسنده  </label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        @include('admin.__components.select-2-ajax',[
+                                              'name' => 'author',
+                                              'url' => route('admin.admins.search.ajax'),
+                                              'selectedItems' =>  (isset($blog->author_id))? [
+                                                ['id' => $blog->author_id,'title'=> $blog->author->webPresent()->fullName]
+                                                ] : null
+                                          ])
+                                        <!--end::Input-->
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
                                     <div class="mb-10 fv-row fv-plugins-icon-container">
                                         <!--begin::Label-->
                                         <label class="required form-label">لینک کنونیکال  </label>
