@@ -51,7 +51,7 @@ class TorobProductsResource extends JsonResource
         foreach ($allAttributes as $attribute ){
             $attributes[$attribute->key] = $attribute->value;
         }
-		return json_encode($attributes);
+        return empty($attributes) ? new \stdClass() : $attributes;
     }
 
 }

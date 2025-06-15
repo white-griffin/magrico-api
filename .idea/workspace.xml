@@ -7,6 +7,7 @@
     <list default="true" id="30a6b576-a0a2-48f9-b014-7cdac6d079e1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/TorobProductsResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/TorobProductsResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/liara.json" beforeDir="false" afterPath="$PROJECT_DIR$/liara.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,7 +271,7 @@
       <workItem from="1749387773535" duration="4713000" />
       <workItem from="1749565044078" duration="10392000" />
       <workItem from="1749712706321" duration="3295000" />
-      <workItem from="1749735728609" duration="718000" />
+      <workItem from="1749735728609" duration="1786000" />
     </task>
     <servers />
   </component>
