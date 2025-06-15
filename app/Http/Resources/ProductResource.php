@@ -33,6 +33,8 @@ class ProductResource extends JsonResource
             'meta_title' => strip_tags($this->meta_title),
             'meta_description' => strip_tags($this->meta_description),
             'canonical_url' => $this->canonical_url,
+            'category_name' => $this->category->title,
+            'category_slug' => $this->category->slug,
         ];
     }
 
@@ -58,6 +60,7 @@ class ProductResource extends JsonResource
             'id' => $category->id,
             'parent_id' => $category->parent_id,
             'title' => $category->title,
+            'slug' => $category->slug,
             'image' => $category->apiPresent()->image,
             'image_alt' => $category->image_alt,
             'meta_title' => strip_tags($category->meta_title),
