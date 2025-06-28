@@ -189,7 +189,7 @@ class OrderController extends Controller
 
         $payRequest = Http::post('https://payment.zarinpal.com/pg/v4/payment/request.json', [
             'merchant_id' => env('ZARINPAL_MERCHANT_ID'),
-            'amount' => (int)$payment->amount,
+            'amount' => (int)$payment->amount *10,
             'callback_url' => route('payment.callback'),
             'description' => 'خرید محصول',
         ]);
