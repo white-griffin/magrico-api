@@ -244,8 +244,8 @@ class OrderController extends Controller
                     }
                     DB::commit();
                     $reciver = $this->getReceiverData($paymentRecord->order->receiver);
-                    $sendOrderSms = $this->sendSmsWithPattern(3526,$reciver['fullName'],$reciver['mobile']);
-                    Log::info($sendOrderSms);
+//                    $sendOrderSms = $this->sendSmsWithPattern(3526,$reciver['fullName'],$reciver['mobile']);
+//                    Log::info($sendOrderSms);
                     return view('user.payments.success-pay');
                 }elseif ($paymentVerify['data']['code'] == 101){
                     DB::commit();
