@@ -244,8 +244,8 @@ class OrderController extends Controller
                     }
                     DB::commit();
                     $reciver = $this->getReceiverData($paymentRecord->order->receiver);
-//                    $sendOrderSms = $this->sendSmsWithPattern(3526,$reciver['fullName'],$reciver['mobile']);
-//                    Log::info($sendOrderSms);
+                    $sendOrderSms = $this->sendSmsWithPattern(3526,$reciver['fullName'],$reciver['mobile']);
+                    Log::info($sendOrderSms);
                     return view('user.payments.success-pay');
                 }elseif ($paymentVerify['data']['code'] == 101){
                     DB::commit();
@@ -283,7 +283,7 @@ class OrderController extends Controller
     {
         $verifyRequest = Http::post('https://payment.zarinpal.com/pg/v4/payment/verify.json', [
             'merchant_id' => env('ZARINPAL_MERCHANT_ID'),
-            'amount' => $payment->amount,
+            'amount' => $payment->amount *10,
             'authority' => $payment->transaction_id,
         ]);
         Log::error($verifyRequest->json());
