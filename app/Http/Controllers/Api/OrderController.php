@@ -272,8 +272,7 @@ class OrderController extends Controller
             }
         }catch (\Exception $e){
             DB::rollBack();
-            Log::error($e->getMessage());
-            dd($e->getMessage());
+            Log::error($paymentVerify);
             return view('user.payments.failed-pay');
         }
 
@@ -287,6 +286,7 @@ class OrderController extends Controller
             'amount' => $payment->amount,
             'authority' => $payment->transaction_id,
         ]);
+        Log::error($verifyRequest->json());
         return $verifyRequest->json();
     }
 
