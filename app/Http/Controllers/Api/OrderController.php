@@ -272,6 +272,8 @@ class OrderController extends Controller
             }
         }catch (\Exception $e){
             DB::rollBack();
+            Log::error($e->getMessage());
+            dd($e->getMessage());
             return view('user.payments.failed-pay');
         }
 
