@@ -25,7 +25,8 @@ class OrderResource extends JsonResource
                 'delivery_amount' => $this->delivery_amount,
                 'discount_amount' => $this->discount_amount,
                 'total_amount' => $this->total_amount,
-                'tax_amount' => $this->total_amount * 0.1
+                'tax_amount' => $this->total_amount * 0.1,
+                'order_date' => $this->updated_at
             ],
             'receiver_data' => !is_null($this->receiver) ? $this->getReceiverData($this->receiver) : null
         ];

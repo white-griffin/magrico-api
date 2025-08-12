@@ -34,7 +34,6 @@ class SliderController extends Controller
             ApiResponse::Success('عملیات موفق');
         }catch (\Exception $e){
             DB::rollBack();
-
             ApiResponse::Fail(500,'خطا در عملیات');
         }
     }
