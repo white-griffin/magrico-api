@@ -21,7 +21,6 @@ class SliderController extends Controller
     public function store()
     {
 
-        ;
         DB::beginTransaction();
         try {
             $slider = new Slider;
