@@ -66,7 +66,7 @@ class TorobApiController extends Controller
         return [
             "api_version" => "torob_api_v3",
             "current_page" => $page_num,
-            "total" => (int)count($products),
+            "total" => (int)Product::count(),
             "max_pages" => (int)(Product::count()/100)+1,
             "products" => TorobProductsResource::collection($products),
         ];
