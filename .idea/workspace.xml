@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="30a6b576-a0a2-48f9-b014-7cdac6d079e1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Constants/PermissionConstant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Constants/PermissionConstant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/partials/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/partials/sidebar.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,7 +284,7 @@
       <workItem from="1752046847856" duration="10000" />
       <workItem from="1754386532588" duration="826000" />
       <workItem from="1754561539531" duration="677000" />
-      <workItem from="1754982485661" duration="4865000" />
+      <workItem from="1754982485661" duration="5495000" />
     </task>
     <servers />
   </component>

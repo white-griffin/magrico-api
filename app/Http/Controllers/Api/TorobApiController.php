@@ -12,7 +12,7 @@ class TorobApiController extends Controller
 {
     public function list(Request $request)
     {
-        
+
         // Check request parameters and get products accordingly
         switch(true) {
             case isset($request['page']):
@@ -46,28 +46,28 @@ class TorobApiController extends Controller
             $slugs[] = $slug;
         }
         $products = Product::whereIn('slug', $slugs)->get();
-        return $this->setResponse($products);
+        return $this->setResponse($products,1);
     }
 
     private function getProductsByIds($ids){
         $products = Product::whereIn('id', $ids)->get();
-        return $this->setResponse($products);
+        return $this->setResponse($products,1);
     }
 
     private function getProductsByPageNumber($request){
 
         $products = Product::orderBy($request['sort'] == 'date_added_desc' ? 'created_at' : 'updated_at', 'desc')
         ->paginate(100, ['*'], 'page', $request['page']);
-        return $this->setResponse($products->items());
+        return $this->setResponse($products->items(),$request['page']);
     }
 
-    private function setResponse($products){
+    private function setResponse($products,$page_num){
 
         return [
             "api_version" => "torob_api_v3",
-            "current_page" => 1,
+            "current_page" => $page_num,
             "total" => (int)count($products),
-            "max_pages" => (int)(count($products)/100)+1,
+            "max_pages" => (int)(Product::count()/100)+1,
             "products" => TorobProductsResource::collection($products),
         ];
     }
