@@ -31,6 +31,7 @@ class CategoriesResource extends JsonResource
             'meta_title' => strip_tags($this->meta_title),
             'meta_description' => strip_tags($this->meta_description),
             'canonical_url' => $this->canonical_url,
+            'parent_category_slug' => isset($category->parent_id) && $category->parent_id != null ? $category->parent->slug : null
         ];
     }
 

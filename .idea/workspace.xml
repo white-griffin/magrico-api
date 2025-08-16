@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30a6b576-a0a2-48f9-b014-7cdac6d079e1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/TorobApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/TorobApiController.php" afterDir="false" />
-    </list>
+    <list default="true" id="30a6b576-a0a2-48f9-b014-7cdac6d079e1" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -286,7 +283,7 @@
       <workItem from="1754386532588" duration="826000" />
       <workItem from="1754561539531" duration="677000" />
       <workItem from="1754982485661" duration="5495000" />
-      <workItem from="1755354040342" duration="1883000" />
+      <workItem from="1755354040342" duration="2496000" />
     </task>
     <servers />
   </component>
