@@ -21,7 +21,7 @@ class OrderResource extends JsonResource
             'status' => $this->status,
             'delivery_status' => $this->delivery_status,
             'factor_data' => [
-                'order_amount' => $this->order_amount,
+                'order_amount' => $this->order_amount + $this->discount_amount,
                 'delivery_amount' => $this->delivery_amount,
                 'discount_amount' => $this->discount_amount,
                 'total_amount' => $this->total_amount,
