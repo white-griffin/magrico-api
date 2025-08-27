@@ -170,7 +170,8 @@ class OrderController extends Controller
             'national_code' => request('national_code'),
             'mobile' => request('mobile'),
             'email' => request('email'),
-            'address' => request('address')
+            'address' => request('address'),
+            'zip_code' => request('zip_code')
         ]);
         return  $order;
     }

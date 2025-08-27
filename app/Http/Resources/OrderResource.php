@@ -55,7 +55,8 @@ class OrderResource extends JsonResource
             'national_code' => $receiver->national_code,
             'mobile' => $receiver->mobile,
             'email' => $receiver->email,
-            'address' => $receiver->address
+            'address' => $receiver->address,
+            'zip_code' => $receiver->zip_code
         ];
     }
 }
