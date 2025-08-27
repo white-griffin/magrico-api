@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
+    public int $discountAmount =0;
+
     public function createOrder()
     {
         DB::beginTransaction();
@@ -36,8 +38,8 @@ class OrderController extends Controller
                 }
             }
             $cart = $this->getCart();
-            $discountAmount = $this->getDiscountAmount($discount_code,$cart['total_amount']);
-            $order = $this->createOrderRecord($user,$discount_code,$cart,$discountAmount);
+            $this->setDiscountCodeAmount($discount_code,$cart['total_amount']);
+            $order = $this->createOrderRecord($user,$discount_code,$cart);
 
             $this->createOrderItems($cart['items'],$order->id);
             $payment = $this->createPaymentRecord($user,$order);
@@ -74,9 +76,18 @@ class OrderController extends Controller
 
     private function getItemPrice($item)
     {
-        return $item->discount_status == Constant::ACTIVE ?
-            $item->price - ($item->price * $item->discount_percent /100) :
-            $item->price;
+
+        if ($item->discount_status == Constant::ACTIVE){
+
+            $price = $item->price - ($item->price * $item->discount_percent /100);
+
+            $this->discountAmount += ($item->price * $item->discount_percent /100);
+        }else{
+
+            $price = $item->price;
+        }
+
+        return $price;
     }
 
     private function getCart()
@@ -135,31 +146,29 @@ class OrderController extends Controller
         return $discount_code;
     }
 
-    private function getDiscountAmount($discount_code,$total_amount)
+    private function setDiscountCodeAmount($discount_code,$total_amount)
     {
 
-        $discountAmount = 0;
         if (!is_null($discount_code)){
             if ($discount_code->discount_type == Constant::AMOUNT){
-                $discountAmount = $discount_code->discount_amount;
+                $this->discountAmount = $discount_code->discount_amount;
             }else{
-                $discountAmount = ($total_amount * $discount_code->discount_percent / 100);
+                $this->discountAmount = ($total_amount * $discount_code->discount_percent / 100);
             }
         }
 
 
-        return $discountAmount;
     }
 
-    private function createOrderRecord($user,$discount_code,$cart,$discountAmount)
+    private function createOrderRecord($user,$discount_code,$cart)
     {
         $order = Order::create([
             'user_id' => $user->id,
             'discount_code_id' => !is_null($discount_code) ? $discount_code->id : null,
             'order_amount' => $cart['items_amount'],
             'delivery_amount' => $cart['delivery_amount'],
-            'discount_amount' => $discountAmount,
-            'total_amount' => ($cart['total_amount'] - $discountAmount)*1.1 /* اضافه شدن 10 درصد مبلغ مالیات به جمع مبلغ خرید*/,
+            'discount_amount' => $this->discountAmount,
+            'total_amount' => ($cart['total_amount'] - $this->discountAmount)*1.1 /* اضافه شدن 10 درصد مبلغ مالیات به جمع مبلغ خرید*/,
 			'description' => request('description')
         ]);
 
