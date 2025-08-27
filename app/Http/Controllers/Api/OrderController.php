@@ -95,9 +95,10 @@ class OrderController extends Controller
         $cartItems = CartItem::where('user_id', request()->user()->id)
             ->with('product')
             ->get();
-        $itemsAmount =$cartItems->sum(function ($item) {
+        $itemsAmount = $cartItems->sum(function ($item) {
             return $item->quantity * $this->getItemPrice($item->product);
         });
+
         $deliveryAmount = $cartItems->sum(function ($item) {
             return $item->quantity * $item->delivery_amount;
         });
@@ -165,10 +166,10 @@ class OrderController extends Controller
         $order = Order::create([
             'user_id' => $user->id,
             'discount_code_id' => !is_null($discount_code) ? $discount_code->id : null,
-            'order_amount' => $cart['items_amount'],
+            'order_amount' => $cart['items_amount'] *10,
             'delivery_amount' => $cart['delivery_amount'],
             'discount_amount' => $this->discountAmount,
-            'total_amount' => ($cart['total_amount'] - $this->discountAmount)*1.1 /* اضافه شدن 10 درصد مبلغ مالیات به جمع مبلغ خرید*/,
+            'total_amount' => $cart['total_amount'] * 1.1 /* اضافه شدن 10 درصد مبلغ مالیات به جمع مبلغ خرید*/,
 			'description' => request('description')
         ]);
 
