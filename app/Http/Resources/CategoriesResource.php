@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Category;
-use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\{Category, Product};
 use App\Http\Resources\ProductResource;
 
 class CategoriesResource extends JsonResource
@@ -27,6 +26,9 @@ class CategoriesResource extends JsonResource
             'image_alt' => $this->image_alt,
             'sub_categories' => CategoriesResource::collection(
                 $this->subCategories
+            ),
+            'parent_category' => CategoriesResource::make(
+                $this->parent
             ),
             'meta_title' => strip_tags($this->meta_title),
             'meta_description' => strip_tags($this->meta_description),
