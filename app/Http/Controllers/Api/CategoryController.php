@@ -68,9 +68,9 @@ class CategoryController extends Controller
             'sub_categories' => CategoriesResource::collection(
                 $category->subCategories
             ),
-            'parent_category' => !is_null($category->parent)?
-                $this->parentCategoryData($category->parent)
-                : null,
+            // 'parent_category' => !is_null($category->parent)?
+            //     $this->parentCategoryData($category->parent)
+            //     : null,
             'meta_title' => strip_tags($category->meta_title),
             'meta_description' => strip_tags($category->meta_description),
             'canonical_url' => $category->canonical_url,

@@ -27,9 +27,9 @@ class CategoriesResource extends JsonResource
             'sub_categories' => CategoriesResource::collection(
                 $this->subCategories
             ),
-            'parent_category' => !is_null($this->parent)?
-                $this->parentCategoryData($this->parent)
-                : null,
+            // 'parent_category' => !is_null($this->parent)?
+            //     $this->parentCategoryData($this->parent)
+            //     : null,
             'meta_title' => strip_tags($this->meta_title),
             'meta_description' => strip_tags($this->meta_description),
             'canonical_url' => $this->canonical_url,
