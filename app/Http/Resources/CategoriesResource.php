@@ -27,13 +27,20 @@ class CategoriesResource extends JsonResource
             'sub_categories' => CategoriesResource::collection(
                 $this->subCategories
             ),
-            'parent_category' => CategoriesResource::make(
-                $this->parent
-            ),
+            'parent_category' => !is_null($this->parent)?
+                $this->parentCategoryData($this->parent)
+                : null,
             'meta_title' => strip_tags($this->meta_title),
             'meta_description' => strip_tags($this->meta_description),
             'canonical_url' => $this->canonical_url,
             'parent_category_slug' => isset($category->parent_id) && $category->parent_id != null ? $category->parent->slug : null
+        ];
+    }
+
+     private function parentCategoryData($parent){
+        return [
+            'title' => $parent->title,
+            'slug' => $parent->slug
         ];
     }
 
