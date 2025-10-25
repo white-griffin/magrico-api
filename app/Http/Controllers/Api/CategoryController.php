@@ -5,10 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Constants\Constant;
 use App\Helpers\Api\ApiResponse;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CategoriesResource;
-use App\Http\Resources\ProductResource;
-use App\Models\Category;
-use App\Models\Product;
+use App\Http\Resources\{CategoriesResource, ProductResource};
+use App\Models\{Category, Product};
 
 class CategoryController extends Controller
 {
@@ -69,6 +67,9 @@ class CategoryController extends Controller
             'products' => $this->getProducts($category),
             'sub_categories' => CategoriesResource::collection(
                 $category->subCategories
+            ),
+            'parent_category' => CategoriesResource::make(
+                $category->parent
             ),
             'meta_title' => strip_tags($category->meta_title),
             'meta_description' => strip_tags($category->meta_description),
