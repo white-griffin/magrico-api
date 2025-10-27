@@ -2,9 +2,11 @@
 
 namespace App\Http\Resources;
 
-use App\Constants\Constant;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Constants\Constant;
+use App\Helpers\Format\Date;
+use App\Http\Resources\{CommentResource, ProductAttributesResource};
 
 class ProductResource extends JsonResource
 {
@@ -35,6 +37,7 @@ class ProductResource extends JsonResource
             'canonical_url' => $this->canonical_url,
             'category_name' => $this->category->title,
             'category_slug' => $this->category->slug,
+            'update_date' => Date::toJalaliFormat($this->updated_at),
         ];
     }
 
