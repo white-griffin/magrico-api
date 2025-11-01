@@ -47,10 +47,9 @@ class TorobApiController extends Controller
             $slug = end($parts);
             $slugs[] = $slug;
         }
-        dump($urls);
-        dump($slugs);
+
         $products = Product::whereIn('slug', $slugs)->get();
-        dd($products);
+
         return $this->setResponse($products,1,count($products),1);
     }
 
