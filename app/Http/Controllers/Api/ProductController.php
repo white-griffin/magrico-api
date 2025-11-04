@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Support\Facades\DB;
 use App\Constants\Constant;
 use App\Helpers\Api\ApiResponse;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CommentResource;
-use App\Http\Resources\ProductAttributesResource;
-use App\Http\Resources\ProductResource;
-use App\Models\Category;
-use App\Models\Comment;
-use App\Models\Product;
-use Illuminate\Support\Facades\DB;
+use App\Http\Resources\{CommentResource, ProductAttributesResource, ProductResource};
+use App\Models\{Category, Comment, Product};
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class ProductController extends Controller
@@ -64,16 +60,16 @@ class ProductController extends Controller
 
     public function single()
     {
-        $product = Product::findOrFail(\request('product_id'));
+        $product = ProductResource::make(Product::findOrFail(\request('product_id')));
 
-        return ApiResponse::Success('',$this->singleProductResource($product));
+        return ApiResponse::Success('',$product);
     }
 
     public function detail($slug)
     {
-        $product = Product::where('slug',$slug)->first();
+        $product = ProductResource::make(Product::where('slug',$slug)->first());
 
-        return ApiResponse::Success('',$this->singleProductResource($product));
+        return ApiResponse::Success('',$product);
     }
 
     private function filesResource($allFiles)
