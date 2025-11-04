@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Constants\Constant;
+use App\Helpers\Format\Date;
 use App\Helpers\Api\ApiResponse;
+use App\Models\{Category, Product};
 use App\Http\Controllers\Controller;
 use App\Http\Resources\{CategoriesResource, ProductResource};
-use App\Models\{Category, Product};
 
 class CategoryController extends Controller
 {
@@ -74,6 +75,7 @@ class CategoryController extends Controller
             'meta_title' => strip_tags($category->meta_title),
             'meta_description' => strip_tags($category->meta_description),
             'canonical_url' => $category->canonical_url,
+            'update_date' => Date::toJalaliFormat($category->updated_at),
         ];
     }
 

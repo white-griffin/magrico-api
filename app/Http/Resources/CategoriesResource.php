@@ -2,10 +2,11 @@
 
 namespace App\Http\Resources;
 
+use App\Helpers\Format\Date;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\{Category, Product};
 use App\Http\Resources\ProductResource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class CategoriesResource extends JsonResource
 {
@@ -33,7 +34,8 @@ class CategoriesResource extends JsonResource
             'meta_title' => strip_tags($this->meta_title),
             'meta_description' => strip_tags($this->meta_description),
             'canonical_url' => $this->canonical_url,
-            'parent_category_slug' => isset($category->parent_id) && $category->parent_id != null ? $category->parent->slug : null
+            'parent_category_slug' => isset($category->parent_id) && $category->parent_id != null ? $category->parent->slug : null,
+            'update_date' => Date::toJalaliFormat($this->updated_at),
         ];
     }
 
