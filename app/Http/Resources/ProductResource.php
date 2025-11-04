@@ -71,8 +71,8 @@ class ProductResource extends JsonResource
             'canonical_url' => $category->canonical_url,
             'parent_category' => !is_null($category->parent)?
                 [
-                    'title' => $category->parent,
-                    'slug' => $category->parent
+                    'title' => $category->parent->title,
+                    'slug' => $category->parent->slug
                 ]
                 : null,
         ];
