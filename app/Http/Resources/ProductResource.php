@@ -69,6 +69,12 @@ class ProductResource extends JsonResource
             'meta_title' => strip_tags($category->meta_title),
             'meta_description' => strip_tags($category->meta_description),
             'canonical_url' => $category->canonical_url,
+            'parent_category' => !is_null($category->parent)?
+                [
+                    'title' => $category->parent,
+                    'slug' => $category->parent
+                ]
+                : null,
         ];
     }
 }

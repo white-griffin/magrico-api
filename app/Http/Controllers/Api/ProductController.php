@@ -72,21 +72,6 @@ class ProductController extends Controller
         return ApiResponse::Success('',$product);
     }
 
-    private function filesResource($allFiles)
-    {
-
-        $files =[];
-        foreach ($allFiles as $file){
-            $files[] = [
-                'id' => $file->id,
-                'file_name' => asset(Constant::PRODUCT_GALLERY_PATH.$file->name),
-                'type' => $file->type,
-                'link' => $file->link,
-                'alt' => $file->alt
-            ];
-        }
-        return $files;
-    }
 
     public function addComment()
     {
@@ -111,28 +96,5 @@ class ProductController extends Controller
 
     }
 
-    private function singleProductResource($product)
-    {
-        return [
-            'id' => $product->id,
-            'category_id' => $product->category_id,
-            'title' => $product->title,
-            'description' => $product->description,
-            'slug' => $product->slug,
-            'price' => $product->price,
-            'discount_percent' => $product->discount_percent,
-            'quantity' => $product->quantity,
-            'image' => $product->apiPresent()->image,
-            'image_alt' => $product->image_alt,
-            'discount_status' => $product->discount_status,
-            'attributes' => ProductAttributesResource::collection($product->attributes) ,
-            'gallery' => $this->filesResource($product->files),
-            'comments' => CommentResource::collection($product->comments->where('status',Constant::PUBLISHED)),
-            'meta_title' => strip_tags($product->meta_title),
-            'meta_description' => strip_tags($product->meta_description),
-            'canonical_url' => $product->canonical_url,
-            'category_name' => $product->category->title,
-            'category_slug' => $product->category->slug,
-        ];
-    }
+
 }
