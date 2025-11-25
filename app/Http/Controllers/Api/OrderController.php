@@ -2,24 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\{Request, Response};
+use Illuminate\Support\Facades\{DB, Http, Log, Validator};
 use App\Constants\Constant;
 use App\Helpers\Api\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\OrderResource;
-use App\Models\CartItem;
-use App\Models\DiscountCode;
-use App\Models\Order;
-use App\Models\OrderItem;
-use App\Models\OrderReceiver;
-use App\Models\Payment;
-use App\Models\User;
+use App\Models\{CartItem, DiscountCode, Order, OrderItem, OrderReceiver, Payment, User};
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
@@ -169,7 +159,7 @@ class OrderController extends Controller
             'order_amount' => $cart['items_amount'] *10,
             'delivery_amount' => $cart['delivery_amount'],
             'discount_amount' => $this->discountAmount,
-            'total_amount' => $cart['total_amount'] * 1.1 /* اضافه شدن 10 درصد مبلغ مالیات به جمع مبلغ خرید*/,
+            'total_amount' => ($cart['total_amount'] - $this->discountAmount) * 1.1 /* اضافه شدن 10 درصد مبلغ مالیات به جمع مبلغ خرید*/,
 			'description' => request('description')
         ]);
 
