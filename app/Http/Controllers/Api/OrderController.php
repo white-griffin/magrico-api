@@ -159,7 +159,7 @@ class OrderController extends Controller
             'order_amount' => $cart['items_amount'] *10,
             'delivery_amount' => $cart['delivery_amount'],
             'discount_amount' => $this->discountAmount,
-            'total_amount' => ($cart['total_amount'] - $this->discountAmount) * 1.1 /* اضافه شدن 10 درصد مبلغ مالیات به جمع مبلغ خرید*/,
+            'total_amount' => $cart['total_amount'] * 1.1 /* اضافه شدن 10 درصد مبلغ مالیات به جمع مبلغ خرید*/,
 			'description' => request('description')
         ]);
 
